@@ -49,3 +49,56 @@ $shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     margin: 0 auto;
   }
 }
+// Colors
+$primary-black: #000000;
+
+// Pink colors
+$secondary-pink: #FF2D75;
+$secondary-pink-light: #ff4d8f;
+$secondary-pink-dark: #e0005a;
+
+// Cyan colors  
+$accent-cyan: #00FFE0;
+$accent-cyan-light: #33ffe6;
+$accent-cyan-dark: #00e6c7;
+
+
+// Colors
+$primary-black: #000000;
+$primary-black-light: #1a1a1a; // lighten($primary-black, 5%)
+$primary-black-lighter: #333333; // lighten($primary-black, 10%)
+
+$secondary-pink: #FF2D75;
+$secondary-pink-light: #ff4d8f; // lighten($secondary-pink, 10%)
+$secondary-pink-dark: #e0005a; // darken($secondary-pink, 10%)
+
+$accent-cyan: #00FFE0;
+$accent-cyan-light: #33ffe6; // lighten($accent-cyan, 10%)
+$accent-cyan-dark: #00e6c7; // darken($accent-cyan, 10%)
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+$shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+// Colors
+$primary-black: #000000;
+$primary-black-light: #0d0d0d; // lighten($primary-black, 5%)
+$primary-black-lighter: #1a1a1a; // lighten($primary-black, 10%)
+
+// Colors with variants
+$primary-black: #000000;
+$primary-black-light: #0d0d0d;  // было lighten($primary-black, 5%)
+$primary-black-lighter: #1a1a1a; // было lighten($primary-black, 10%)
+
+$secondary-pink: #FF2D75;
+$secondary-pink-light: #ff4d8f; // было lighten($secondary-pink, 10%)
+$secondary-pink-dark: #e0005a;  // было darken($secondary-pink, 10%)
+$secondary-pink-darker: #b80047; // было darken($secondary-pink, 15%)
+
+$accent-cyan: #00FFE0;
+$accent-cyan-light: #33ffe6;    // было lighten($accent-cyan, 10%)
+$accent-cyan-dark: #00e6c7;     // было darken($accent-cyan, 10%)

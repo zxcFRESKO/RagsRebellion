@@ -1,4 +1,3 @@
-@import '../../styles/variables', '../../styles/mixins';
 
 .wishlistPage {
   padding: 2rem 0;
@@ -27,8 +26,7 @@
 .emptyIcon {
   width: 8rem;
   height: 8rem;
-  background: linear-gradient(135deg, $secondary-pink, darken($secondary-pink, 15%));
-  border-radius: 50%;
+  background: linear-gradient(135deg, $secondary-pink, $secondary-pink-darker);  border-radius: 50%;
   @include flex-center;
   margin-bottom: 2rem;
   box-shadow: $shadow-lg;
@@ -72,7 +70,7 @@
   border: 2px solid transparent;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }
@@ -214,7 +212,7 @@
   font-size: 0.875rem;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-1px);
   }
 
@@ -367,10 +365,10 @@
 // Темная тема enhancements
 @media (prefers-color-scheme: dark) {
   .wishlistItem {
-    background: lighten($primary-black, 5%);
+    background: $primary-black-light;
     
     &:hover {
-      background: lighten($primary-black, 8%);
+      background: $primary-black-lighter;
     }
   }
 }

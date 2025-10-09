@@ -1,4 +1,4 @@
-@import '../../../styles/variables', '../../../styles/mixins';
+
 
 .button {
   display: inline-flex;
@@ -30,7 +30,7 @@
   color: white;
 
   &:hover:not(:disabled) {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-1px);
     box-shadow: $shadow-md;
   }
@@ -41,7 +41,7 @@
   color: $primary-black;
 
   &:hover:not(:disabled) {
-    background: darken($accent-cyan, 10%);
+    background: #00e6c7;;
     transform: translateY(-1px);
     box-shadow: $shadow-md;
   }

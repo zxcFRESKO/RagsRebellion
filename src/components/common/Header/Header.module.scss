@@ -1,4 +1,4 @@
-@import '../../../styles/variables', '../../../styles/mixins';
+
 
 .header {
   position: fixed;
@@ -306,7 +306,7 @@
   font-weight: 600;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     color: white;
   }
 }

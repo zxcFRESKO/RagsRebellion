@@ -1,4 +1,4 @@
-@import '../../../styles/variables', '../../../styles/mixins';
+
 
 .cartSummary {
   background: $gray-800;
@@ -87,7 +87,7 @@
   text-align: center;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }

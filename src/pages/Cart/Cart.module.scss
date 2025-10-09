@@ -1,4 +1,3 @@
-@import '../../styles/variables', '../../styles/mixins','../../styles/globals';
 
 .cartPage {
   padding: 2rem 0;
@@ -64,7 +63,7 @@
   transition: all $transition-normal;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }
