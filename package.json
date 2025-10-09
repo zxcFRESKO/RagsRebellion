@@ -1,5 +1,5 @@
 {
-  "name": "viperswag-store",
+  "name": "RagsRebellion",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "animejs": "^3.2.1",
@@ -21,7 +22,6 @@
   "devDependencies": {
     "@types/animejs": "^3.1.5",
     "@types/classnames": "^2.3.1",
-    "@types/feather-icons": "^4.29.4",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^4.0.0",

@@ -72,7 +72,7 @@
   border: 2px solid transparent;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }
@@ -214,7 +214,7 @@
   font-size: 0.875rem;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-1px);
   }
 
@@ -367,7 +367,7 @@
 // Темная тема enhancements
 @media (prefers-color-scheme: dark) {
   .wishlistItem {
-    background: lighten($primary-black, 5%);
+    background: $primary-black-light;
     
     &:hover {
       background: lighten($primary-black, 8%);

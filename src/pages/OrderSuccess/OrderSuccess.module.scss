@@ -153,7 +153,7 @@
   border: 2px solid transparent;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }
@@ -297,7 +297,7 @@
 // Dark mode enhancements
 @media (prefers-color-scheme: dark) {
   .detailCard {
-    background: lighten($primary-black, 5%);
+    background: $primary-black-light;
     
     &:hover {
       background: lighten($primary-black, 8%);

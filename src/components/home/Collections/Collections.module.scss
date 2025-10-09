@@ -1,4 +1,5 @@
-@import '../../../styles/variables', '../../../styles/mixins';
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .collectionsSection {
   padding: 5rem 0;
@@ -153,7 +154,7 @@
   color: $secondary-pink;
 
   &:hover {
-    color: lighten($secondary-pink, 10%);
+    color: #ff4d8f;;
   }
 }
 
@@ -161,7 +162,7 @@
   color: $accent-cyan;
 
   &:hover {
-    color: lighten($accent-cyan, 10%);
+    color: #33ffe6;;
   }
 }
 

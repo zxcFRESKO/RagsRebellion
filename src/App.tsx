@@ -10,7 +10,6 @@ import Checkout from './pages/Checkout/Checkout';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 import Profile from './pages/Profile/Profile';
 import Wishlist from './pages/Wishlist/Wishlist';
-// import Collections from './pages/Collections/Collections';
 // import NotFound from './pages/NotFound/NotFound';
 import './styles/globals.scss';
 
@@ -18,23 +17,17 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <Router>
+        <Router basename="/viperswag-store">
           <Routes>
             <Route path="/" element={<Layout />}>
-              {/* Public Routes */}
               <Route index element={<Home />} />
               <Route path="shop" element={<Shop />} />
-              {/* <Route path="collections" element={<Collections />} /> */}
               <Route path="product/:id" element={<Product />} />
               <Route path="cart" element={<Cart />} />
-              
-              {/* Protected Routes */}
               <Route path="checkout" element={<Checkout />} />
               <Route path="order-success" element={<OrderSuccess />} />
               <Route path="profile" element={<Profile />} />
               <Route path="wishlist" element={<Wishlist />} />
-              
-              {/* 404 Page */}
               {/* <Route path="*" element={<NotFound />} /> */}
             </Route>
           </Routes>

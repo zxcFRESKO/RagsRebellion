@@ -1,4 +1,5 @@
-@import '../../../styles/variables', '../../../styles/mixins';
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .hero {
   position: relative;
@@ -118,7 +119,7 @@
   border: 2px solid transparent;
 
   &:hover {
-    background: darken($secondary-pink, 10%);
+    background: #e0005a;;
     transform: translateY(-2px);
     box-shadow: $shadow-lg;
   }
