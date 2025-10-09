@@ -9,7 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/Rags-Rebellion/',
+  base: '/Rags Rebellion/',
   css: {
     preprocessorOptions: {
       scss: {
