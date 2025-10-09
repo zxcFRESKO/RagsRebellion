@@ -54,8 +54,8 @@ const AuthModal: React.FC<AuthModalProps> = ({
         {/* Header с логотипом */}
         <div className={styles.modalHeader}>
           <div className={classNames(styles.modalLogo, 'logo-font')}>
-            <span className={styles.logoWhite}>VIPER</span>
-            <span className={styles.logoPink}>SWAG</span>
+            <span className={styles.logoWhite}>Rags</span>
+            <span className={styles.logoPink}>Rebellion</span>
           </div>
           <p className={styles.modalSubtitle}>
             {currentView === 'login' ? 'Sign in to your account' : 'Create your account'}

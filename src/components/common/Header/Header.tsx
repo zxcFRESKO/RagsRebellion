@@ -57,8 +57,8 @@ const Header: React.FC = () => {
         <div className={styles.container}>
           <Link to="/" className={styles.logo}>
             <span className="logo-font">
-              <span className={styles.logoWhite}>VIPER</span>
-              <span className={styles.logoPink}>SWAG</span>
+              <span className={styles.logoWhite}>RAGS</span>
+              <span className={styles.logoPink}> REBELLION</span>
             </span>
           </Link>
 

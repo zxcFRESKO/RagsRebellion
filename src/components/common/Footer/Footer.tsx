@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
           <div className={styles.brandSection}>
             <Link to="/" className={styles.footerLogo}>
               <span className="logo-font">
-                <span className={styles.logoWhite}>VIPER</span>
-                <span className={styles.logoPink}>SWAG</span>
+                <span className={styles.logoWhite}>RAGS</span>
+                <span className={styles.logoPink}> REBELLION</span>
               </span>
             </Link>
             <p className={styles.brandDescription}>
