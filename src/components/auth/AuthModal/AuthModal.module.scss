@@ -1,0 +1,528 @@
+@import '../../../styles/variables', '../../../styles/mixins';
+
+.authModal {
+  padding: 0;
+  background: $gray-900;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.modalHeader {
+  background: linear-gradient(135deg, $secondary-pink, darken($secondary-pink, 15%));
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.modalLogo {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  
+  .logoWhite {
+    color: white;
+  }
+  
+  .logoPink {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.modalSubtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.modalContent {
+  padding: 2rem;
+  
+  @media (max-width: $breakpoint-sm) {
+    padding: 1.5rem;
+  }
+}
+
+.tabNavigation {
+  display: flex;
+  background: $gray-800;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.tabButton {
+  flex: 1;
+  background: none;
+  border: none;
+  color: $gray-400;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all $transition-normal;
+  font-weight: 600;
+  font-size: 0.875rem;
+
+  &:hover {
+    color: white;
+    background: $gray-700;
+  }
+}
+
+.tabButtonActive {
+  color: white;
+  background: $secondary-pink;
+  box-shadow: $shadow-sm;
+
+  &:hover {
+    background: darken($secondary-pink, 5%);
+  }
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.formSubtitle {
+  color: $gray-400;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  color: $gray-300;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.formInput {
+  background: $gray-800;
+  color: white;
+  border: 1px solid $gray-700;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  transition: all $transition-normal;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-pink;
+    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.1);
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+
+  &:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+}
+
+.passwordInput {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $gray-500;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $gray-300;
+  }
+
+  i {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  background: $secondary-pink;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all $transition-normal;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: darken($secondary-pink, 10%);
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.3);
+  }
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $gray-800;
+}
+
+.footerText {
+  color: $gray-400;
+  font-size: 0.875rem;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: $secondary-pink;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: lighten($secondary-pink, 10%);
+    text-decoration: underline;
+  }
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.errorIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #22c55e;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.successIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.socialLogin {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $gray-800;
+}
+
+.socialTitle {
+  text-align: center;
+  color: $gray-400;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: $gray-700;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: $gray-700;
+  }
+}
+
+.socialButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: $gray-800;
+  border: 1px solid $gray-700;
+  color: $gray-300;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all $transition-normal;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:hover {
+    background: $gray-700;
+    border-color: $gray-600;
+    transform: translateY(-1px);
+  }
+
+  i {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+.socialGoogle:hover {
+  color: #ea4335;
+  border-color: #ea4335;
+}
+
+.socialFacebook:hover {
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+.socialApple:hover {
+  color: white;
+  border-color: white;
+}
+
+.forgotPassword {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.forgotLink {
+  color: $secondary-pink;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: lighten($secondary-pink, 10%);
+    text-decoration: underline;
+  }
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  @include flex-center;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 0.75rem;
+  z-index: 10;
+  color: white;
+}
+
+.loadingSpinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid $gray-700;
+  border-top: 2px solid $secondary-pink;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText {
+  font-size: 0.875rem;
+  color: $gray-300;
+}
+
+// Анимации
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.authForm {
+  animation: slideIn 0.3s ease-out;
+}
+
+// Responsive
+@media (max-width: $breakpoint-sm) {
+  .modalHeader {
+    padding: 1.5rem;
+  }
+
+  .modalContent {
+    padding: 1.5rem 1rem;
+  }
+
+  .socialButtons {
+    grid-template-columns: 1fr;
+  }
+
+  .tabNavigation {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .submitButton {
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+// Focus styles
+.formInput:focus-visible,
+.submitButton:focus-visible,
+.tabButton:focus-visible,
+.socialButton:focus-visible,
+.switchButton:focus-visible {
+  outline: 2px solid $accent-cyan;
+  outline-offset: 2px;
+}
+
+// Password strength indicator
+.passwordStrength {
+  margin-top: 0.5rem;
+}
+
+.strengthBar {
+  height: 4px;
+  background: $gray-700;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.strengthWeak {
+  background: #ef4444;
+  width: 33%;
+}
+
+.strengthMedium {
+  background: #f59e0b;
+  width: 66%;
+}
+
+.strengthStrong {
+  background: #22c55e;
+  width: 100%;
+}
+
+.strengthText {
+  font-size: 0.75rem;
+  color: $gray-500;
+}
+
+// Terms checkbox
+.termsGroup {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.termsCheckbox {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.125rem;
+  accent-color: $secondary-pink;
+}
+
+.termsLabel {
+  font-size: 0.75rem;
+  color: $gray-400;
+  line-height: 1.4;
+
+  a {
+    color: $secondary-pink;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Dark mode enhancements
+@media (prefers-color-scheme: dark) {
+  .socialButton {
+    background: lighten($primary-black, 5%);
+    
+    &:hover {
+      background: lighten($primary-black, 8%);
+    }
+  }
+}

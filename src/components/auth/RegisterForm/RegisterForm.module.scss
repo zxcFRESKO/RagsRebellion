@@ -1,0 +1,314 @@
+@import '../../../styles/variables', '../../../styles/mixins';
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.formSubtitle {
+  color: $gray-400;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.errorIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.nameRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  color: $gray-300;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.optional {
+  color: $gray-500;
+  font-weight: 400;
+}
+
+.formInput {
+  background: $gray-800;
+  color: white;
+  border: 1px solid $gray-700;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  transition: all $transition-normal;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-pink;
+    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.1);
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.inputError {
+  border-color: #ef4444;
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+}
+
+.fieldError {
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.passwordInput {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $gray-500;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: color $transition-normal;
+
+  &:hover:not(:disabled) {
+    color: $gray-300;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.passwordIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.passwordStrength {
+  margin-top: 0.5rem;
+}
+
+.strengthBar {
+  height: 4px;
+  background: $gray-700;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.strengthText {
+  font-size: 0.75rem;
+  color: $gray-500;
+  
+  strong {
+    font-weight: 600;
+  }
+}
+
+.termsGroup {
+  margin: 0.5rem 0;
+}
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.termsCheckbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: $secondary-pink;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.checkboxText {
+  color: $gray-400;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.termsLink {
+  color: $secondary-pink;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  background: $secondary-pink;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all $transition-normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: darken($secondary-pink, 10%);
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.3);
+  }
+}
+
+.loadingSpinner {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $gray-800;
+}
+
+.footerText {
+  color: $gray-400;
+  font-size: 0.875rem;
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: $secondary-pink;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color $transition-normal;
+
+  &:hover:not(:disabled) {
+    color: lighten($secondary-pink, 10%);
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-sm) {
+  .nameRow {
+    grid-template-columns: 1fr;
+  }
+
+  .submitButton {
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+// Focus styles
+.formInput:focus-visible,
+.submitButton:focus-visible,
+.switchButton:focus-visible,
+.togglePassword:focus-visible,
+.termsCheckbox:focus-visible {
+  outline: 2px solid $accent-cyan;
+  outline-offset: 2px;
+}

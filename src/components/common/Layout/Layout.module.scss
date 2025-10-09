@@ -1,0 +1,16 @@
+@import '../../../styles/variables', '../../../styles/mixins';
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-top: 80px; // Высота хедера
+
+  @media (max-width: $breakpoint-md) {
+    padding-top: 70px;
+  }
+}

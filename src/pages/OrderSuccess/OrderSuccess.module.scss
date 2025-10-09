@@ -1,0 +1,313 @@
+@import '../../styles/variables', '../../styles/mixins';
+
+.successPage {
+  padding: 4rem 0;
+  min-height: 80vh;
+  @include flex-center;
+}
+
+.container {
+  @include container;
+  max-width: 600px;
+  text-align: center;
+}
+
+.successIcon {
+  width: 8rem;
+  height: 8rem;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  @include flex-center;
+  margin: 0 auto 2rem;
+  box-shadow: $shadow-xl;
+  
+  i {
+    width: 4rem;
+    height: 4rem;
+    color: white;
+  }
+}
+
+.successTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 2.5rem;
+  }
+}
+
+.successMessage {
+  background: $gray-800;
+  border: 1px solid $gray-800;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.messageText {
+  color: $gray-300;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.orderNumber {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+
+  strong {
+    color: $accent-cyan;
+  }
+}
+
+.confirmationText {
+  color: $gray-400;
+  font-size: 0.875rem;
+}
+
+.orderDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailCard {
+  background: $gray-800;
+  border: 1px solid $gray-800;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all $transition-normal;
+
+  &:hover {
+    border-color: $gray-700;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.detailIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: $secondary-pink;
+  flex-shrink: 0;
+}
+
+.detailContent {
+  text-align: left;
+  flex: 1;
+}
+
+.detailTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $gray-400;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailText {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.primaryButton {
+  background: $secondary-pink;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all $transition-normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px solid transparent;
+
+  &:hover {
+    background: darken($secondary-pink, 10%);
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: white;
+  }
+}
+
+.secondaryButton {
+  background: transparent;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all $transition-normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px solid $gray-600;
+
+  &:hover {
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-pink;
+  }
+}
+
+.buttonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.redirectNotice {
+  background: rgba(0, 255, 224, 0.1);
+  border: 1px solid rgba(0, 255, 224, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: $accent-cyan;
+  font-size: 0.875rem;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+// Анимации
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.successIcon {
+  animation: celebrate 2s ease-in-out infinite;
+}
+
+// Confetti effect (декоративный)
+.successPage::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 45, 117, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 224, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+// Progress bar for redirect
+.redirectNotice {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: $accent-cyan;
+    animation: countdown 10s linear forwards;
+  }
+}
+
+@keyframes countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-sm) {
+  .successPage {
+    padding: 2rem 0;
+  }
+
+  .successIcon {
+    width: 6rem;
+    height: 6rem;
+    
+    i {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .successTitle {
+    font-size: 2rem;
+  }
+
+  .successMessage {
+    padding: 1.5rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+// Dark mode enhancements
+@media (prefers-color-scheme: dark) {
+  .detailCard {
+    background: lighten($primary-black, 5%);
+    
+    &:hover {
+      background: lighten($primary-black, 8%);
+    }
+  }
+}
+
+// Focus styles для доступности
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid $accent-cyan;
+  outline-offset: 2px;
+}
