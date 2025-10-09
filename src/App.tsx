@@ -17,7 +17,11 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
+<<<<<<< HEAD
         <Router basename="/Rags-Rebellion/">
+=======
+        <Router basename="/viperswag-store">
+>>>>>>> e7a9b7aa9fdf5b17e38da5c5d36c23ab38b9e1b5
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
