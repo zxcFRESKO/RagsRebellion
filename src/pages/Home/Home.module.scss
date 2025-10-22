@@ -1,14 +1,604 @@
-
 .home {
-  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.vantaBackground {
-  position: fixed;
+// Hero Section с параллаксом
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1px; // Для параллакс эффекта
+}
+
+// Контейнер для параллакс слоев
+.parallaxContainer {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  opacity: 0.2;
+  transform-style: preserve-3d;
 }
+
+// Базовые стили для всех слоев
+.parallaxLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.1s ease-out;
+  will-change: transform, opacity;
+}
+
+// Фоновый слой - лес с туманом
+.parallaxLayer:first-child {
+  z-index: 1;
+  background-image: url('/images/forest-fog.jpg'); // fallback
+  filter: brightness(0.8) contrast(1.1);
+}
+
+// Средний слой - горы
+.middleLayer {
+  z-index: 2;
+  background-image: url('/images/mountains.png'); // fallback
+  background-position: bottom center;
+  background-size: contain;
+}
+
+// Передний слой - замок
+.foregroundLayer {
+  z-index: 3;
+  background-image: url('/images/castle.png'); // fallback
+  background-position: center 70%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: overlay; // Красивый эффект наложения
+}
+
+.vantaBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 6;
+  text-align: center;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  transition: all 0.5s ease;
+
+  @media (min-width: 768px) {
+    font-size: 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 8rem;
+  }
+}
+
+.textStroke {
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+}
+
+.textRed {
+  color: $secondary-pink;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.5s ease 0.1s;
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: all 0.5s ease 0.2s;
+}
+
+.primaryButton {
+  background: $secondary-pink;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all $transition-normal;
+
+  &:hover {
+    background: #e0005a;
+    transform: translateY(-2px);
+  }
+}
+
+.outlineButton {
+  background: transparent;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: 2px solid white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all $transition-normal;
+
+  &:hover {
+    background: white;
+    color: black;
+    transform: translateY(-2px);
+  }
+}
+
+.scrollDown {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+.scrollIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+// Индикатор прогресса скролла
+.scrollProgress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 7;
+}
+
+.progressBar {
+  height: 100%;
+  background: $secondary-pink;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px $secondary-pink;
+}
+
+// Остальные стили (brandMarquee, featuredDrops и т.д.) остаются без изменений
+// ...
+.scrollDown {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scrollIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+// Brand Marquee
+.brandMarquee {
+  background: black;
+  border-top: 1px solid $gray-800;
+  border-bottom: 1px solid $gray-800;
+  overflow: hidden;
+}
+
+.marqueeContent {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+
+.brandName {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $gray-400;
+  padding: 0 2rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+// Featured Drops
+.featuredDrops {
+  padding: 5rem 1rem;
+  background: black;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+}
+
+.viewAllLink {
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color $transition-normal;
+
+  &:hover {
+    color: $secondary-pink;
+  }
+}
+
+.arrowIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.productCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.productImageContainer {
+  position: relative;
+  aspect-ratio: 1;
+  background: $gray-900;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.productOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.3s ease;
+}
+
+.productCard:hover .productOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.productOverlayTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.productOverlaySubtitle {
+  color: $gray-300;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.quickAddButton {
+  background: $secondary-pink;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background $transition-normal;
+
+  &:hover {
+    background: #e0005a;
+  }
+}
+
+.productInfo {
+  margin-top: 1rem;
+}
+
+.productName {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.productBrand {
+  color: $gray-400;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.productPrice {
+  color: $secondary-pink;
+  font-weight: 700;
+}
+
+// Full Width Banner
+.fullBanner {
+  position: relative;
+  height: 24rem;
+
+  @media (min-width: 768px) {
+    height: 100vh;
+  }
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+}
+
+.bannerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bannerTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+
+  @media (min-width: 768px) {
+    font-size: 5rem;
+  }
+}
+
+.bannerText {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+// Instagram Section
+.instagramSection {
+  padding: 5rem 1rem;
+  background: black;
+}
+
+.instagramGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.instagramItem {
+  aspect-ratio: 1;
+  background: $gray-900;
+  overflow: hidden;
+}
+
+.instagramImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Newsletter
+.newsletter {
+  padding: 5rem 1rem;
+  background: $gray-900;
+}
+
+.newsletterContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletterTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+}
+
+.newsletterText {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+.newsletterInput {
+  flex: 1;
+  background: black;
+  border: 1px solid $gray-700;
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-pink;
+  }
+
+  &::placeholder {
+    color: $gray-500;
+  }
+}
+
+.parallaxBackground {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.parallaxLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+

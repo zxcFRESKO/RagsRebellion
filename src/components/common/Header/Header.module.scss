@@ -25,23 +25,8 @@
   }
 }
 
-.logo {
-  text-decoration: none;
-  font-size: 1.875rem;
-  line-height: 1;
-  transition: transform $transition-normal;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-.logoWhite {
-  color: white;
-}
-
-.logoPink {
-  color: $secondary-pink;
+.logoRed {
+  color: $secondary-pink; // Используем красный вместо розового
 }
 
 .desktopNav {

@@ -17,7 +17,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <Router basename="/Rags-Rebellion/">
+        <Router basename="/RagsRebellion/">
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />

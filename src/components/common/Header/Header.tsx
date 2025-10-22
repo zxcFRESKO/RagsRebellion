@@ -56,11 +56,11 @@ const Header: React.FC = () => {
       <header className={headerStyle}>
         <div className={styles.container}>
           <Link to="/" className={styles.logo}>
-            <span className="logo-font">
-              <span className={styles.logoWhite}>RAGS</span>
-              <span className={styles.logoPink}> REBELLION</span>
-            </span>
-          </Link>
+  <span className="logo-font">
+    <span className={styles.logoWhite}>RAGS</span>
+    <span className={styles.logoRed}>REBELLION</span> {/* Измените pink на red */}
+  </span>
+</Link>
 
           {/* Desktop Navigation */}
           <nav className={styles.desktopNav}>

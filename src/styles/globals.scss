@@ -1,3 +1,5 @@
+// Добавьте импорт шрифтов в начале
+@import './fonts';
 
 * {
   margin: 0;
@@ -5,47 +7,47 @@
   box-sizing: border-box;
 }
 
+// Убедитесь что body и html занимают всю ширину
 html, body {
   width: 100%;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; // Предотвращаем горизонтальный скролл
 }
 
 body {
-  font-family: $font-montserrat;
+  font-family: $font-primary;
   background-color: $primary-black;
   color: white;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
+  min-height: 100vh;
 }
+
 
 // Full width container
-.container {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
+// .container {
+//   width: 100%;
+//   max-width: 100%;
+//   margin: 0 auto;
+//   padding: 0 1rem;
 
-  @media (min-width: $breakpoint-lg) {
-    padding: 0 2rem;
-  }
+//   @media (min-width: $breakpoint-lg) {
+//     padding: 0 2rem;
+//   }
   
-  // Optional: limit on very large screens
-  // @media (min-width: 1920px) {
-  //   max-width: 1920px;
-  // }
-}
+//   // Optional: limit on very large screens
+//   // @media (min-width: 1920px) {
+//   //   max-width: 1920px;
+//   // }
+// }
 
 // ... остальные стили без изменений
 /* Typography */
 .logo-font {
-  font-family: $font-bebas;
+  font-family: $font-archivo;
   letter-spacing: 0.05em;
   font-weight: normal;
 }

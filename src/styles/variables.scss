@@ -13,8 +13,12 @@ $gray-200: #e5e7eb;
 $gray-100: #f3f4f6;
 
 // Typography
-$font-bebas: 'Bebas Neue', cursive;
-$font-montserrat: 'Montserrat', sans-serif;
+$font-archivo: 'Archivo Black', sans-serif;
+$font-syne: 'Syne', sans-serif;
+
+// Используйте Syne как основной шрифт вместо Montserrat
+$font-primary: $font-syne;
+$font-secondary: $font-archivo;
 
 $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
