@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import imagee from '../../assets/images/ab8dd86e98a886671f511d8fcf13fd76.jpg'
 import dream from '../../assets/images/dream.jpg'
 import eyes from '../../assets/images/eyes.jpg'
+import erd from '../../assets/images/erd.jpg'
+import tabi from '../../assets/images/tabi.jpg'
+import shouroom from '../../assets/images/shouroom.jpg'
+import balenciagaDefender from '../../assets/images/balenciagadefender.jpg'
 import { Link } from 'react-router-dom';
 import { useFeatherIcons } from '../../hooks/useFeatherIcons';
 import styles from './Home.module.scss';
@@ -69,21 +73,21 @@ const Home: React.FC = () => {
       name: 'ERD Distressed Hoodie',
       brand: 'Enfants Riches Déprimés',
       price: 1250,
-      image: 'http://static.photos/fashion/1024x576/1'
+      image: erd,
     },
     {
       id: '2', 
       name: 'Balenciaga Defender',
       brand: 'Balenciaga',
       price: 1850,
-      image: 'http://static.photos/fashion/1024x576/2'
+      image: balenciagaDefender,
     },
     {
       id: '3',
       name: 'Margiela Tabi Boots', 
       brand: 'Maison Margiela',
       price: 1450,
-      image: 'http://static.photos/fashion/1024x576/3'
+      image: tabi
     }
   ];
 
@@ -275,7 +279,7 @@ const Home: React.FC = () => {
             {[5, 6, 7, 8].map((num) => (
               <div key={num} className={styles.instagramItem}>
                 <img 
-                  src={`http://static.photos/fashion/640x360/${num}`}
+                  src={shouroom}
                   alt="Instagram Post"
                   className={styles.instagramImage}
                 />
@@ -285,8 +289,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className={styles.newsletter}>
+      <section className={`${styles.newsletter} ${styles.bgNoise}`}>
         <div className={styles.newsletterContent}>
           <h2 className={styles.newsletterTitle}>
             <span className={styles.textStroke}>GET</span> 
@@ -301,8 +304,11 @@ const Home: React.FC = () => {
               type="email" 
               placeholder="Your Email" 
               className={styles.newsletterInput}
+              required
             />
-            <button type="submit" className={styles.primaryButton}>Subscribe</button>
+            <button type="submit" className={styles.primaryButton}>
+              Subscribe
+            </button>
           </form>
         </div>
       </section>

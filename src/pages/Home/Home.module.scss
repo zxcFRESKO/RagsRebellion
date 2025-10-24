@@ -523,19 +523,37 @@
 // Newsletter
 .newsletter {
   padding: 5rem 1rem;
-  background: $gray-900;
+  background: $gray-900; // Темный фон как в дизайне
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/images/dream.jpg");
+    pointer-events: none;
+  }
 }
 
 .newsletterContent {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .newsletterTitle {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
+  line-height: 1.1;
 
   @media (min-width: 768px) {
     font-size: 4rem;
@@ -548,6 +566,7 @@
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  color: $gray-300;
 }
 
 .newsletterForm {
@@ -564,22 +583,24 @@
 
 .newsletterInput {
   flex: 1;
-  background: black;
+  background: $primary-black; // Черный фон для инпута
   border: 1px solid $gray-700;
   color: white;
   padding: 0.75rem 1rem;
   font-size: 1rem;
+  font-family: $font-primary;
+  transition: all $transition-normal;
 
   &:focus {
     outline: none;
     border-color: $secondary-pink;
+    box-shadow: 0 0 0 2px rgba(255, 45, 117, 0.1);
   }
 
   &::placeholder {
     color: $gray-500;
   }
 }
-
 .parallaxBackground {
   position: absolute;
   top: -10%;
