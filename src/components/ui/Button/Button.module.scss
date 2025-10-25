@@ -4,15 +4,16 @@
   justify-content: center;
   gap: 0.5rem;
   border: none;
-  border-radius: 0; // ПРЯМЫЕ УГЛЫ вместо border-radius: 0.5rem
-  font-weight: 700; // Более жирный шрифт как в дизайне
+  border-radius: 0 !important; // ПРЯМЫЕ УГЛЫ
+  font-weight: 400; // Archivo regular
   cursor: pointer;
   transition: all $transition-normal;
   text-decoration: none;
   position: relative;
-  font-family: $font-primary; // Используем основной шрифт
-  text-transform: uppercase; // ВСЕ ЗАГЛАВНЫЕ как в дизайне
-  letter-spacing: 0.05em;
+  font-family: $font-primary;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 2px solid transparent; // Резкие границы
 
   &:focus {
     outline: none;
@@ -29,79 +30,40 @@
 .button-primary {
   background: $secondary-pink;
   color: white;
-  border: none;
+  border-color: $secondary-pink;
 
   &:hover:not(:disabled) {
     background: #e0005a;
-    transform: translateY(-1px);
-    box-shadow: $shadow-md;
-  }
-}
-
-.button-secondary {
-  background: $accent-cyan;
-  color: $primary-black;
-  border: none;
-
-  &:hover:not(:disabled) {
-    background: #00e6c7;
-    transform: translateY(-1px);
-    box-shadow: $shadow-md;
+    border-color: #e0005a;
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
   }
 }
 
 .button-outline {
   background: transparent;
   color: white;
-  border: 2px solid white; // Белая рамка как в дизайне
+  border: 2px solid white;
 
   &:hover:not(:disabled) {
     background: white;
     color: $primary-black;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 }
 
-// Размеры кнопок - обновим отступы чтобы были как в дизайне
+// Размеры - больше
 .button-sm {
-  padding: 0.5rem 1.5rem;
-  font-size: 0.75rem;
-}
-
-.button-md {
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
 }
 
-.button-lg {
-  padding: 1rem 2.5rem;
+.button-md {
+  padding: 1rem 2rem;
   font-size: 1rem;
 }
 
-// ... остальные стили без изменений
-
-.buttonLoading {
-  color: transparent;
-}
-
-.loadingSpinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.spinner {
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid transparent;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.button-lg {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.125rem;
 }

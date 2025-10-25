@@ -1,89 +1,110 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useFeatherIcons } from '../../../hooks/useFeatherIcons';
 import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
+  useFeatherIcons();
+  const footerRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <footer className={styles.footer}>
+    <footer 
+      ref={footerRef} 
+      className={`${styles.footer} ${isVisible ? styles.visible : ''}`}
+    >
       <div className={styles.container}>
         <div className={styles.footerGrid}>
-          
-          {/* Brand Section */}
-          <div className={styles.brandSection}>
-            <Link to="/" className={styles.footerLogo}>
-              <span className="logo-font">
-                <span className={styles.logoWhite}>RAGS</span>
-                <span className={styles.logoPink}> REBELLION</span>
-              </span>
-            </Link>
+          {/* Brand Column */}
+          <div className={styles.brandColumn}>
+            <h3 className={styles.brandTitle}>RAGS REBELLION</h3>
             <p className={styles.brandDescription}>
-              Streetwear for the bold. Limited drops. Unlimited attitude.
+              Disruptive fashion for the new generation. Limited drops from the most avant-garde designers.
             </p>
             <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialLink} aria-label="Instagram">
+              <a href="#" className={styles.socialLink}>
                 <i data-feather="instagram"></i>
               </a>
-              <a href="#" className={styles.socialLink} aria-label="Twitter">
+              <a href="#" className={styles.socialLink}>
                 <i data-feather="twitter"></i>
               </a>
-              <a href="#" className={styles.socialLink} aria-label="Facebook">
+              <a href="#" className={styles.socialLink}>
                 <i data-feather="facebook"></i>
               </a>
-              <a href="#" className={styles.socialLink} aria-label="YouTube">
+              <a href="#" className={styles.socialLink}>
                 <i data-feather="youtube"></i>
               </a>
             </div>
           </div>
 
-          {/* Shop Links */}
-          <div className={styles.linkSection}>
-            <h3 className={styles.sectionTitle}>Shop</h3>
-            <ul className={styles.linkList}>
-              <li><Link to="/new-arrivals" className={styles.footerLink}>New Arrivals</Link></li>
-              <li><Link to="/best-sellers" className={styles.footerLink}>Best Sellers</Link></li>
-              <li><Link to="/t-shirts" className={styles.footerLink}>T-Shirts</Link></li>
-              <li><Link to="/hoodies" className={styles.footerLink}>Hoodies</Link></li>
-              <li><Link to="/accessories" className={styles.footerLink}>Accessories</Link></li>
+          {/* Shop Column */}
+          <div className={styles.column}>
+            <h4 className={styles.columnTitle}>Shop</h4>
+            <ul className={styles.columnList}>
+              <li><Link to="/shop" className={styles.columnLink}>All Products</Link></li>
+              <li><Link to="/new-arrivals" className={styles.columnLink}>New Arrivals</Link></li>
+              <li><Link to="/best-sellers" className={styles.columnLink}>Best Sellers</Link></li>
+              <li><Link to="/sale" className={styles.columnLink}>Sale Items</Link></li>
             </ul>
           </div>
 
-          {/* Help Links */}
-          <div className={styles.linkSection}>
-            <h3 className={styles.sectionTitle}>Help</h3>
-            <ul className={styles.linkList}>
-              <li><Link to="/contact" className={styles.footerLink}>Contact Us</Link></li>
-              <li><Link to="/faq" className={styles.footerLink}>FAQs</Link></li>
-              <li><Link to="/shipping" className={styles.footerLink}>Shipping</Link></li>
-              <li><Link to="/returns" className={styles.footerLink}>Returns</Link></li>
-              <li><Link to="/size-guide" className={styles.footerLink}>Size Guide</Link></li>
+          {/* Information Column */}
+          <div className={styles.column}>
+            <h4 className={styles.columnTitle}>Information</h4>
+            <ul className={styles.columnList}>
+              <li><Link to="/about" className={styles.columnLink}>About Us</Link></li>
+              <li><Link to="/contact" className={styles.columnLink}>Contact</Link></li>
+              <li><Link to="/shipping" className={styles.columnLink}>Shipping Policy</Link></li>
+              <li><Link to="/returns" className={styles.columnLink}>Returns & Exchanges</Link></li>
             </ul>
           </div>
 
-          {/* About Links */}
-          <div className={styles.linkSection}>
-            <h3 className={styles.sectionTitle}>About</h3>
-            <ul className={styles.linkList}>
-              <li><Link to="/our-story" className={styles.footerLink}>Our Story</Link></li>
-              <li><Link to="/blog" className={styles.footerLink}>Blog</Link></li>
-              <li><Link to="/careers" className={styles.footerLink}>Careers</Link></li>
-              <li><Link to="/press" className={styles.footerLink}>Press</Link></li>
-              <li><Link to="/wholesale" className={styles.footerLink}>Wholesale</Link></li>
+          {/* Contact Column */}
+          <div className={styles.column}>
+            <h4 className={styles.columnTitle}>Contact</h4>
+            <ul className={styles.columnList}>
+              <li className={styles.contactItem}>123 Fashion Ave, New York</li>
+              <li className={styles.contactItem}>hello@ragsrebellion.com</li>
+              <li className={styles.contactItem}>+1 (555) 123-4567</li>
             </ul>
           </div>
-
         </div>
 
-        {/* Footer Bottom */}
-        <div className={styles.footerBottom}>
-          <p className={styles.copyright}>
-            © {currentYear} ViperSwag Threads. All rights reserved.
-          </p>
-          <div className={styles.legalLinks}>
-            <Link to="/privacy" className={styles.legalLink}>Privacy Policy</Link>
-            <Link to="/terms" className={styles.legalLink}>Terms of Service</Link>
-            <Link to="/cookies" className={styles.legalLink}>Cookies</Link>
+        {/* Bottom Bar */}
+        <div className={styles.bottomBar}>
+          <div className={styles.bottomContent}>
+            <p className={styles.copyright}>
+              © 2024 Rags Rebellion. All rights reserved.
+            </p>
+            <div className={styles.legalLinks}>
+              <Link to="/privacy" className={styles.legalLink}>Privacy Policy</Link>
+              <Link to="/terms" className={styles.legalLink}>Terms of Service</Link>
+              <Link to="/cookies" className={styles.legalLink}>Cookies</Link>
+            </div>
           </div>
         </div>
       </div>

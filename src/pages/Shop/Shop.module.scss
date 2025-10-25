@@ -1,88 +1,100 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
-.shopPage {
-  padding: 2rem 0;
-  min-height: 80vh;
+.shop {
+  min-height: 100vh;
+  background: $primary-black;
+  padding-top: 80px; // Для фиксированного хедера
 }
 
-.container {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
-
-  @media (min-width: $breakpoint-lg) {
-    padding: 0 2rem;
-  }
-}
-
-.loadingPage {
-  @include flex-center;
-  flex-direction: column;
-  min-height: 60vh;
-  gap: 1.5rem;
-}
-
-.loadingSpinner {
-  width: 3rem;
-  height: 3rem;
-  border: 3px solid $gray-700;
-  border-top: 3px solid $secondary-pink;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.pageHeader {
+// Hero Section
+.shopHero {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)),
+              url('/api/placeholder/1920/600');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem;
   text-align: center;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $gray-800;
-}
-
-.pageTitle {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
-
-  @media (max-width: $breakpoint-md) {
-    font-size: 2.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1.5rem;
   }
 }
 
-.pageDescription {
-  color: $gray-400;
-  font-size: 1.25rem;
-  max-width: 600px;
+.heroContent {
+  max-width: 1200px;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
-.shopContent {
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+// Main Layout
+.shopContainer {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 3rem;
-
-  @media (max-width: $breakpoint-lg) {
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 }
 
-.filtersSidebar {
-  background: $gray-800;
-  border: 1px solid $gray-800;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  height: fit-content;
+// Sidebar
+.sidebar {
+  background: $primary-black;
+  border-right: 1px solid $gray-800;
+  padding: 2rem;
+  height: calc(100vh - 80px);
   position: sticky;
-  top: 100px;
-
-  @media (max-width: $breakpoint-lg) {
-    position: static;
+  top: 80px;
+  overflow-y: auto;
+  
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: calc(100vh - 80px);
+    z-index: 100;
+    transition: left 0.3s ease;
+    border-right: none;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+  
+  &.sidebarOpen {
+    @media (max-width: 1024px) {
+      left: 0;
+    }
   }
 }
 
-.filtersHeader {
+.sidebarHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,156 +103,98 @@
   border-bottom: 1px solid $gray-800;
 }
 
-.filtersTitle {
+.sidebarTitle {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: white;
-  margin: 0;
 }
 
 .clearFilters {
   background: none;
   border: none;
   color: $secondary-pink;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   cursor: pointer;
-  transition: color $transition-normal;
-
+  transition: color 0.3s ease;
+  
   &:hover {
-    color: #ff4d8f;;
+    color: #ff4d8f;
   }
 }
 
 .filterSection {
   margin-bottom: 2rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .filterTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: $gray-400;
   margin-bottom: 1rem;
 }
 
-.filterOptions {
+.filterList {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
-.filterOption {
+.filterItem {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-  transition: color $transition-normal;
-
-  &:hover {
-    color: $secondary-pink;
-  }
-}
-
-.filterInput {
-  width: 1.125rem;
-  height: 1.125rem;
-  accent-color: $secondary-pink;
-}
-
-.filterLabel {
-  font-size: 0.875rem;
+  background: none;
+  border: none;
   color: $gray-300;
-  transition: color $transition-normal;
-
-  .filterOption:hover & {
-    color: $secondary-pink;
-  }
-}
-
-.priceRange {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.priceValues {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  color: $gray-400;
-}
-
-.priceSlider {
-  width: 100%;
-  height: 4px;
-  background: $gray-700;
-  border-radius: 2px;
-  outline: none;
-  accent-color: $secondary-pink;
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: $secondary-pink;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-}
-
-.productsMain {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.controlsBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid $gray-800;
-
-  @media (max-width: $breakpoint-sm) {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-}
-
-.resultsCount {
-  color: $gray-400;
-  font-size: 0.875rem;
-}
-
-.sortControls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.sortLabel {
-  color: $gray-400;
-  font-size: 0.875rem;
-}
-
-.sortSelect {
-  background: $gray-800;
-  color: white;
-  border: 1px solid $gray-700;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  padding: 0.75rem 0;
+  text-align: left;
   cursor: pointer;
-  transition: border-color $transition-normal;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  
+  &:hover {
+    color: white;
+  }
+  
+  &.filterItemActive {
+    color: $secondary-pink;
+    
+    .filterCount {
+      color: $secondary-pink;
+    }
+  }
+}
 
-  &:focus {
-    outline: none;
-    border-color: $secondary-pink;
+.filterName {
+  flex: 1;
+}
+
+.filterCount {
+  color: $gray-500;
+  font-size: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.mainContent {
+  padding: 2rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1900px; // ← ДОБАВЬ ЭТУ СТРОКУ
+  margin: 0 auto; // ← И ЭТУ
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
   }
 }
 
@@ -248,68 +202,208 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-
-  @media (max-width: $breakpoint-sm) {
-    grid-template-columns: 1fr;
+  flex: 1;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+// Toolbar
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $gray-800;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
   }
 }
 
-.productCard {
-  margin: 0;
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
-.noResults {
-  @include flex-center;
-  flex-direction: column;
+.filterToggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid $gray-700;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  
+  @media (max-width: 1024px) {
+    display: flex;
+  }
+  
+  &:hover {
+    border-color: $secondary-pink;
+    color: $secondary-pink;
+  }
+  
+  i {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+.resultsCount {
+  color: $gray-400;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sortSelect {
+  background: $primary-black;
+  border: 1px solid $gray-700;
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $secondary-pink;
+  }
+  
+  option {
+    background: $primary-black;
+    color: white;
+    text-transform: uppercase;
+  }
+}
+
+// Products Grid - СТРОГИЙ КОНТРОЛЬ ШИРИНЫ
+// Products Grid - С ОГРАНИЧЕНИЕМ ШИРИНЫ
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px; // Максимальная ширина грида
+  margin: 0 auto; // Центрируем
+  flex: 1;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Empty State
+.emptyState {
   text-align: center;
   padding: 4rem 2rem;
-  background: $gray-800;
-  border: 1px solid $gray-800;
-  border-radius: 0.75rem;
+  color: $gray-400;
 }
 
-.noResultsIcon {
+.emptyIcon {
   width: 4rem;
   height: 4rem;
-  color: $gray-600;
   margin-bottom: 1.5rem;
+  color: $gray-600;
 }
 
-.noResultsTitle {
+.emptyTitle {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  color: $gray-300;
 }
 
-.noResultsText {
-  color: $gray-400;
+.emptyText {
+  font-size: 1rem;
   margin-bottom: 2rem;
-  max-width: 300px;
+  color: $gray-500;
+  line-height: 1.6;
 }
 
-.resetFilters {
+.emptyButton {
   background: $secondary-pink;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
   cursor: pointer;
-  transition: all $transition-normal;
-
+  transition: all 0.3s ease;
+  
   &:hover {
-    background: #e0005a;;
-    transform: translateY(-1px);
+    background: #e0005a;
+    transform: translateY(-2px);
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+// Overlay для мобильного фильтра
+.sidebarOverlay {
+  display: none;
+  
+  @media (max-width: 1024px) {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    
+    &.overlayOpen {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }

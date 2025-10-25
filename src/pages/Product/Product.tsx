@@ -10,7 +10,6 @@ import styles from './Product.module.scss';
 const Product: React.FC = () => {
   useFeatherIcons();
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const { addToCart } = useCart();
 
   const [selectedImage, setSelectedImage] = useState<string>('');

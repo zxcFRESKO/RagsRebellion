@@ -1,4 +1,13 @@
-// Syne Regular
+// Font Faces
+@font-face {
+  font-family: 'Archivo Black';
+  src: url('../assets/fonts/Archivo_Black/ArchivoBlack-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Archivo_Black/ArchivoBlack-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Syne';
   src: url('../assets/fonts/Syne/Syne-Regular.woff2') format('woff2'),
@@ -8,7 +17,6 @@
   font-display: swap;
 }
 
-// Syne Bold
 @font-face {
   font-family: 'Syne';
   src: url('../assets/fonts/Syne/Syne-Bold.woff2') format('woff2'),
@@ -18,7 +26,6 @@
   font-display: swap;
 }
 
-// Syne ExtraBold
 @font-face {
   font-family: 'Syne';
   src: url('../assets/fonts/Syne/Syne-ExtraBold.woff2') format('woff2'),
@@ -28,12 +35,3 @@
   font-display: swap;
 }
 
-// Archivo Black Regular
-@font-face {
-  font-family: 'Archivo Black';
-  src: url('../assets/fonts/Archivo_Black/ArchivoBlack-Regular.woff2') format('woff2'),
-       url('../assets/fonts/Archivo_Black/ArchivoBlack-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}

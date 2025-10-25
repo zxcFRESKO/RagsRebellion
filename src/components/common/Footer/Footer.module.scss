@@ -1,13 +1,19 @@
-
 .footer {
   background: $primary-black;
-  border-top: 1px solid $gray-800;
-  padding: 3rem 0 1.5rem;
+  border-top: 2px solid $gray-800;
+  padding: 4rem 0 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
-  width: 100%;
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 
@@ -19,47 +25,33 @@
 .footerGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: 3rem;
 
-  @media (min-width: $breakpoint-md) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
   }
 }
 
-.brandSection {
-  grid-column: 1 / -1;
-
-  @media (min-width: $breakpoint-md) {
-    grid-column: span 2;
+.brandColumn {
+  .brandTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    font-family: $font-archivo;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
-}
 
-.footerLogo {
-  display: inline-block;
-  font-size: 2rem;
-  text-decoration: none;
-  margin-bottom: 1rem;
-
-  &:hover {
-    transform: scale(1.02);
-    transition: transform $transition-normal;
+  .brandDescription {
+    color: $gray-400;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 300px;
   }
-}
-
-.logoWhite {
-  color: white;
-}
-
-.logoPink {
-  color: $secondary-pink;
-}
-
-.brandDescription {
-  color: $gray-400;
-  margin-bottom: 1.5rem;
-  max-width: 300px;
 }
 
 .socialLinks {
@@ -69,10 +61,13 @@
 
 .socialLink {
   color: $gray-400;
-  transition: color $transition-normal;
+  transition: all $transition-normal;
+  padding: 0.5rem;
+  border: 2px solid transparent;
 
   &:hover {
     color: $secondary-pink;
+    border-color: $secondary-pink;
   }
 
   i {
@@ -81,44 +76,58 @@
   }
 }
 
-.linkSection {
-  display: flex;
-  flex-direction: column;
-}
-
-.sectionTitle {
-  color: white;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  font-size: 1.125rem;
-}
-
-.linkList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footerLink {
-  color: $gray-400;
-  text-decoration: none;
-  transition: color $transition-normal;
-
-  &:hover {
-    color: $secondary-pink;
+.column {
+  .columnTitle {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: $font-archivo;
   }
 }
 
-.footerBottom {
-  border-top: 1px solid $gray-800;
-  padding-top: 1.5rem;
+.columnList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.columnLink {
+  color: $gray-400;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all $transition-normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+
+  &:hover {
+    color: $secondary-pink;
+    transform: translateX(5px);
+  }
+}
+
+.contactItem {
+  color: $gray-400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.bottomBar {
+  border-top: 2px solid $gray-800;
+  padding: 2rem 0;
+}
+
+.bottomContent {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -126,22 +135,92 @@
 }
 
 .copyright {
-  color: $gray-500;
+  color: $gray-400;
   font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .legalLinks {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .legalLink {
-  color: $gray-500;
+  color: $gray-400;
+  font-size: 0.75rem;
   text-decoration: none;
-  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
   transition: color $transition-normal;
 
   &:hover {
     color: $secondary-pink;
+  }
+}
+
+// Анимации для отдельных элементов при появлении
+.visible {
+  .brandColumn,
+  .column {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .brandColumn {
+    animation-delay: 0.1s;
+  }
+
+  .column:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .column:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .column:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .bottomBar {
+    animation: fadeIn 0.6s ease 0.5s forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive
+@media (max-width: 767px) {
+  .footer {
+    padding: 3rem 0 0;
+  }
+
+  .footerGrid {
+    gap: 2rem;
+  }
+
+  .legalLinks {
+    gap: 1.5rem;
   }
 }

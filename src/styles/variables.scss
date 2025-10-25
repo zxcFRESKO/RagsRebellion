@@ -12,13 +12,13 @@ $gray-300: #d1d5db;
 $gray-200: #e5e7eb;
 $gray-100: #f3f4f6;
 
-// Typography
 $font-archivo: 'Archivo Black', sans-serif;
 $font-syne: 'Syne', sans-serif;
 
-// Используйте Syne как основной шрифт вместо Montserrat
-$font-primary: $font-syne;
-$font-secondary: $font-archivo;
+// Используем Archivo Black как основной шрифт для всего
+$font-primary: $font-archivo;
+$font-secondary: $font-syne;
+
 
 $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
@@ -108,3 +108,17 @@ $secondary-pink-darker: #b80047; // было darken($secondary-pink, 15%)
 $accent-cyan: #00FFE0;
 $accent-cyan-light: #33ffe6;    // было lighten($accent-cyan, 10%)
 $accent-cyan-dark: #00e6c7;     // было darken($accent-cyan, 10%)
+
+
+$text-xs: 0.75rem;
+$text-sm: 0.875rem;
+$text-base: 1rem;
+$text-lg: 1.125rem;
+$text-xl: 1.25rem;
+$text-2xl: 1.5rem;
+$text-3xl: 2rem;
+$text-4xl: 2.5rem;
+$text-5xl: 3rem;
+$text-6xl: 4rem;
+$text-7xl: 5rem;
+$text-8xl: 6rem;

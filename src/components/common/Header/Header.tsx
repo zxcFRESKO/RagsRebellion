@@ -17,7 +17,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const checkScroll = () => {
-      const hasScrolled = window.scrollY > 50;
+      const hasScrolled = window.scrollY > 20;
       setPageScrolled(hasScrolled);
     };
 
@@ -54,46 +54,53 @@ const Header: React.FC = () => {
   return (
     <>
       <header className={headerStyle}>
-        <div className={styles.container}>
-          <Link to="/" className={styles.logo}>
-  <span className="logo-font">
-    <span className={styles.logoWhite}>RAGS</span>
-    <span className={styles.logoRed}>REBELLION</span> {/* Измените pink на red */}
-  </span>
-</Link>
-
-          {/* Desktop Navigation */}
-          <nav className={styles.desktopNav}>
+        <div className={styles.headerContainer}>
+          {/* Left Navigation */}
+          <nav className={styles.leftNav}>
             <Link to="/shop" className={styles.navLink}>Shop</Link>
             <Link to="/collections" className={styles.navLink}>Collections</Link>
-            <Link to="/about" className={styles.navLink}>About</Link>
-            
-            <div className={styles.dropdown}>
-              <button className={classNames(styles.navLink, styles.dropdownToggle)}>
-                More <i data-feather="chevron-down" className={styles.dropdownIcon}></i>
-              </button>
-              <div className={styles.dropdownMenu}>
-                <Link to="/lookbook" className={styles.dropdownLink}>Lookbook</Link>
-                <Link to="/blog" className={styles.dropdownLink}>Blog</Link>
-                <Link to="/contact" className={styles.dropdownLink}>Contact</Link>
-              </div>
-            </div>
+            <Link to="/drops" className={styles.navLink}>New Drops</Link>
+          </nav>
 
+          {/* Logo */}
+          <Link to="/" className={styles.logo}>
+            <div className={styles.logoContainer}>
+              <span className={styles.logoMain}>RAGS</span>
+              <span className={styles.logoSub}>REBELLION</span>
+            </div>
+          </Link>
+
+          {/* Right Navigation */}
+          <nav className={styles.rightNav}>
+            <Link to="/about" className={styles.navLink}>About</Link>
+            <Link to="/lookbook" className={styles.navLink}>Lookbook</Link>
+            
             <div className={styles.authSection}>
               {isAuthenticated ? (
                 <div className={styles.userDropdown}>
                   <button className={classNames(styles.navLink, styles.userToggle)}>
                     <i data-feather="user" className={styles.userIcon}></i>
-                    {user?.firstName}
+                    <span className={styles.userName}>{user?.firstName}</span>
                   </button>
                   <div className={styles.userMenu}>
-                    <Link to="/profile" className={styles.userMenuItem}>Profile</Link>
-                    <Link to="/orders" className={styles.userMenuItem}>Orders</Link>
-                    <Link to="/wishlist" className={styles.userMenuItem}>Wishlist</Link>
+                    <Link to="/profile" className={styles.userMenuItem}>
+                      <i data-feather="user"></i>
+                      Profile
+                    </Link>
+                    <Link to="/orders" className={styles.userMenuItem}>
+                      <i data-feather="shopping-bag"></i>
+                      Orders
+                    </Link>
+                    <Link to="/wishlist" className={styles.userMenuItem}>
+                      <i data-feather="heart"></i>
+                      Wishlist
+                    </Link>
+                    <div className={styles.menuDivider}></div>
                     <button 
                       className={classNames(styles.userMenuItem, styles.logoutButton)}
                       onClick={handleLogout}
                     >
+                      <i data-feather="log-out"></i>
                       Sign Out
                     </button>
                   </div>
@@ -104,14 +111,18 @@ const Header: React.FC = () => {
                   onClick={handleLoginClick}
                 >
                   <i data-feather="log-in" className={styles.loginIcon}></i>
-                  Sign In
+                  <span>Sign In</span>
                 </button>
               )}
               
               <Link to="/cart" className={classNames(styles.navLink, styles.cartLink)}>
-                <i data-feather="shopping-bag" className={styles.cartIcon}></i>
-                Cart
-                <span className={styles.cartBadge}>{itemsCount}</span>
+                <div className={styles.cartIconWrapper}>
+                  <i data-feather="shopping-bag" className={styles.cartIcon}></i>
+                  {itemsCount > 0 && (
+                    <span className={styles.cartBadge}>{itemsCount}</span>
+                  )}
+                </div>
+                <span className={styles.cartText}>Cart</span>
               </Link>
             </div>
           </nav>
@@ -122,47 +133,104 @@ const Header: React.FC = () => {
             onClick={handleMobileMenuToggle}
             aria-label="Toggle mobile menu"
           >
-            <i 
-              data-feather={mobileMenuVisible ? "x" : "menu"} 
-              className={styles.menuIcon}
-            ></i>
+            <div className={classNames(
+              styles.menuIcon,
+              mobileMenuVisible && styles.menuIconActive
+            )}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
         <nav className={mobileMenuStyle}>
-          <Link to="/shop" className={styles.mobileNavLink}>Shop</Link>
-          <Link to="/collections" className={styles.mobileNavLink}>Collections</Link>
-          <Link to="/about" className={styles.mobileNavLink}>About</Link>
-          <Link to="/lookbook" className={styles.mobileNavLink}>Lookbook</Link>
-          <Link to="/blog" className={styles.mobileNavLink}>Blog</Link>
-          <Link to="/contact" className={styles.mobileNavLink}>Contact</Link>
-          
-          {isAuthenticated ? (
-            <>
-              <Link to="/profile" className={styles.mobileNavLink}>Profile</Link>
-              <Link to="/wishlist" className={styles.mobileNavLink}>Wishlist</Link>
-              <button 
-                className={classNames(styles.mobileNavLink, styles.mobileLogoutButton)}
-                onClick={handleLogout}
-              >
-                Sign Out
-              </button>
-            </>
-          ) : (
-            <button 
-              className={classNames(styles.mobileNavLink, styles.mobileLoginButton)}
-              onClick={handleLoginClick}
-            >
-              Sign In
-            </button>
-          )}
-          
-          <Link to="/cart" className={classNames(styles.mobileNavLink, styles.mobileCartLink)}>
-            <i data-feather="shopping-bag" className={styles.mobileCartIcon}></i>
-            Cart
-            <span className={styles.mobileCartBadge}>{itemsCount}</span>
-          </Link>
+          <div className={styles.mobileNavContent}>
+            <div className={styles.mobileNavHeader}>
+              <div className={styles.mobileUserSection}>
+                {isAuthenticated ? (
+                  <div className={styles.mobileUserInfo}>
+                    <i data-feather="user" className={styles.mobileUserIcon}></i>
+                    <span>Hello, {user?.firstName}</span>
+                  </div>
+                ) : (
+                  <button 
+                    className={styles.mobileLoginButton}
+                    onClick={handleLoginClick}
+                  >
+                    <i data-feather="log-in"></i>
+                    Sign In
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.mobileNavMain}>
+              <Link to="/shop" className={styles.mobileNavLink}>
+                <i data-feather="shopping-bag"></i>
+                Shop
+              </Link>
+              <Link to="/collections" className={styles.mobileNavLink}>
+                <i data-feather="grid"></i>
+                Collections
+              </Link>
+              <Link to="/drops" className={styles.mobileNavLink}>
+                <i data-feather="zap"></i>
+                New Drops
+              </Link>
+              <Link to="/about" className={styles.mobileNavLink}>
+                <i data-feather="info"></i>
+                About
+              </Link>
+              <Link to="/lookbook" className={styles.mobileNavLink}>
+                <i data-feather="camera"></i>
+                Lookbook
+              </Link>
+            </div>
+
+            {isAuthenticated && (
+              <div className={styles.mobileNavUser}>
+                <div className={styles.mobileNavSection}>
+                  <h4 className={styles.mobileSectionTitle}>Account</h4>
+                  <Link to="/profile" className={styles.mobileNavLink}>
+                    <i data-feather="user"></i>
+                    Profile
+                  </Link>
+                  <Link to="/orders" className={styles.mobileNavLink}>
+                    <i data-feather="shopping-bag"></i>
+                    Orders
+                  </Link>
+                  <Link to="/wishlist" className={styles.mobileNavLink}>
+                    <i data-feather="heart"></i>
+                    Wishlist
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            <div className={styles.mobileNavFooter}>
+              {isAuthenticated && (
+                <button 
+                  className={styles.mobileLogoutButton}
+                  onClick={handleLogout}
+                >
+                  <i data-feather="log-out"></i>
+                  Sign Out
+                </button>
+              )}
+              <Link to="/cart" className={styles.mobileCartButton}>
+                <div className={styles.mobileCartInfo}>
+                  <i data-feather="shopping-bag"></i>
+                  <span>Cart</span>
+                  {itemsCount > 0 && (
+                    <span className={styles.mobileCartBadge}>{itemsCount}</span>
+                  )}
+                </div>
+                <i data-feather="chevron-right" className={styles.cartArrow}></i>
+              </Link>
+            </div>
+          </div>
         </nav>
       </header>
 

@@ -1,3 +1,6 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .header {
   position: fixed;
   top: 0;
@@ -5,108 +8,121 @@
   right: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid $gray-800;
-  transition: all $transition-normal;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &.scrolled {
     background: rgba(0, 0, 0, 0.95);
-    border-bottom-color: $gray-700;
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   }
 }
 
-.container {
+.headerContainer {
   @include container-wide;
   @include flex-between;
-  padding: 0.75rem 1rem;
+  padding: 1rem 2rem;
+  position: relative;
 
-  @media (min-width: $breakpoint-md) {
-    padding: 0.75rem 2rem;
+  @media (max-width: 768px) {
+    padding: 1rem 1.5rem;
   }
 }
 
-.logoRed {
-  color: $secondary-pink; // Используем красный вместо розового
+// Logo Styles
+.logo {
+  text-decoration: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
-.desktopNav {
-  display: none;
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.logoMain {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+.logoSub {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: $secondary-pink;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  line-height: 1;
+}
+
+// Navigation Styles
+.leftNav,
+.rightNav {
+  display: flex;
   align-items: center;
   gap: 2rem;
 
-  @media (min-width: $breakpoint-md) {
-    display: flex;
+  @media (max-width: 1024px) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }
 
 .navLink {
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  font-weight: 500;
-  transition: color $transition-normal;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 0;
   position: relative;
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $secondary-pink;
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    color: $secondary-pink;
+    color: white;
+
+    &::after {
+      width: 100%;
+    }
   }
 }
 
-.dropdown {
-  position: relative;
-
-  &:hover .dropdownMenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-}
-
-.dropdownToggle {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.dropdownIcon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid $gray-800;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  min-width: 12rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-0.5rem);
-  transition: all $transition-normal;
-  box-shadow: $shadow-xl;
-}
-
-.dropdownLink {
-  display: block;
-  color: $gray-300;
-  text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.25rem;
-  transition: all $transition-normal;
-
-  &:hover {
-    color: $secondary-pink;
-    background: rgba(255, 45, 117, 0.1);
-  }
-}
-
+// Auth Section
 .authSection {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .userDropdown {
@@ -123,54 +139,81 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    color: white;
+  }
 }
 
 .userIcon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.userName {
+  font-size: 0.75rem;
 }
 
 .userMenu {
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid $gray-800;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  min-width: 12rem;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  min-width: 200px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-0.5rem);
-  transition: all $transition-normal;
-  box-shadow: $shadow-xl;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .userMenuItem {
-  display: block;
-  color: $gray-300;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.25rem;
-  transition: all $transition-normal;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
   background: none;
   border: none;
   width: 100%;
   text-align: left;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  border-radius: 0;
+
+  i {
+    width: 1rem;
+    height: 1rem;
+  }
 
   &:hover {
-    color: $secondary-pink;
-    background: rgba(255, 45, 117, 0.1);
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
   }
 }
 
+.menuDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+}
+
 .logoutButton {
-  color: #ef4444;
+  color: rgba(239, 68, 68, 0.8);
 
   &:hover {
-    color: #dc2626;
+    color: #ef4444;
     background: rgba(239, 68, 68, 0.1);
   }
 }
@@ -181,25 +224,40 @@
   gap: 0.5rem;
   background: none;
   border: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  font: inherit;
+  padding: 0;
+  transition: color 0.3s ease;
 
   &:hover {
-    color: $secondary-pink;
+    color: white;
   }
 }
 
 .loginIcon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
 }
 
+// Cart Styles
 .cartLink {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease;
   position: relative;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.cartIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .cartIcon {
@@ -208,120 +266,342 @@
 }
 
 .cartBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
   background: $secondary-pink;
   color: white;
-  font-size: 0.75rem;
-  border-radius: 50%;
-  width: 1.25rem;
-  height: 1.25rem;
+  font-size: 0.625rem;
+  font-weight: 400;
+  min-width: 16px;
+  height: 16px;
   @include flex-center;
-  font-weight: 600;
+  padding: 0 4px;
 }
 
+.cartText {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+// Mobile Menu Button
 .mobileMenuButton {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: none;
   border: none;
   color: white;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.5rem;
+  margin-left: auto;
 
-  @media (min-width: $breakpoint-md) {
-    display: none;
+  @media (max-width: 768px) {
+    display: flex;
   }
 }
 
 .menuIcon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.mobileMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid $gray-800;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  transition: all $transition-normal;
+  gap: 4px;
+  width: 20px;
+  height: 16px;
+  position: relative;
+  transition: transform 0.3s ease;
 
-  &.mobileMenuOpen {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+  span {
+    display: block;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform-origin: center;
+
+    &:nth-child(1) {
+      width: 100%;
+    }
+    &:nth-child(2) {
+      width: 80%;
+      margin-left: auto;
+    }
+    &:nth-child(3) {
+      width: 60%;
+      margin-left: auto;
+    }
   }
 
-  @media (min-width: $breakpoint-md) {
+  &.menuIconActive {
+    span {
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+        width: 100%;
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Mobile Navigation
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $primary-black;
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow-y: auto;
+
+  &.mobileMenuOpen {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 769px) {
     display: none;
   }
 }
 
-.mobileNavLink {
-  color: white;
-  text-decoration: none;
-  padding: 0.75rem 1rem;
-  border-radius: 0.375rem;
-  transition: all $transition-normal;
-  background: none;
-  border: none;
-  text-align: left;
-  font: inherit;
-
-  &:hover {
-    color: $secondary-pink;
-    background: rgba(255, 255, 255, 0.05);
-  }
+.mobileNavContent {
+  padding: 6rem 1.5rem 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.mobileLoginButton {
-  background: $secondary-pink;
-  color: white;
-  font-weight: 600;
-
-  &:hover {
-    background: #e0005a;;
-    color: white;
-  }
+.mobileNavHeader {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
 }
 
-.mobileLogoutButton {
-  color: #ef4444;
-
-  &:hover {
-    color: #dc2626;
-    background: rgba(239, 68, 68, 0.1);
-  }
+.mobileUserSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.mobileCartLink {
+.mobileUserInfo {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.mobileCartIcon {
+.mobileUserIcon {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.mobileLoginButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 0;
+  cursor: pointer;
+
+  i {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.mobileNavMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 1rem 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  i {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    color: white;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mobileNavUser {
+  margin-bottom: 2rem;
+}
+
+.mobileNavSection {
+  margin-bottom: 1.5rem;
+}
+
+.mobileSectionTitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.mobileNavFooter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileLogoutButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: rgba(239, 68, 68, 0.8);
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  i {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    color: #ef4444;
+  }
+}
+
+.mobileCartButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: white;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileCartInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  i {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
 
 .mobileCartBadge {
   background: $secondary-pink;
   color: white;
-  font-size: 0.75rem;
-  border-radius: 50%;
+  font-size: 0.625rem;
+  font-weight: 400;
+  min-width: 20px;
+  height: 20px;
+  @include flex-center;
+  padding: 0 6px;
+}
+
+.cartArrow {
   width: 1.25rem;
   height: 1.25rem;
-  @include flex-center;
-  font-weight: 600;
-  margin-left: auto;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .headerContainer {
+    padding: 1rem 1.5rem;
+  }
+
+  .leftNav,
+  .rightNav {
+    gap: 1.25rem;
+  }
+
+  .navLink {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoContainer {
+    transform: none;
+    position: static;
+  }
+
+  .logoMain {
+    font-size: 1.25rem;
+  }
+
+  .logoSub {
+    font-size: 0.5rem;
+  }
+}
+
+// Animation for menu items
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobileMenuOpen {
+  .mobileNavLink {
+    animation: slideInFromLeft 0.4s ease forwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.05}s;
+      }
+    }
+  }
 }

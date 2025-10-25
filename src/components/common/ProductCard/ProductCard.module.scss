@@ -1,23 +1,21 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .productCard {
-  background: $gray-800;
-  border: 1px solid $gray-800;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  transition: all $transition-normal;
+  background: $gray-900;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
   position: relative;
-
+  
   &:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: $shadow-xl;
-    border-color: $gray-700;
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    .productOverlay {
+      opacity: 1;
+    }
   }
-}
-
-.imageContainer {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 1 / 1.25;
 }
 
 .productLink {
@@ -26,104 +24,63 @@
   display: block;
 }
 
+.imageContainer {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: $gray-800;
+}
+
 .productImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform $transition-normal;
-
+  transition: transform 0.6s ease;
+  
   .productCard:hover & {
     transform: scale(1.05);
   }
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom, 
-    transparent 0%, 
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.badges {
+.outOfStock {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
 }
 
-.discountBadge {
+.productOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quickView {
   background: $secondary-pink;
   color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.375rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.outOfStockBadge {
-  background: $gray-600;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.375rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.actionButtons {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  opacity: 0;
-  transform: translateX(0.5rem);
-  transition: all $transition-normal;
-
-  .productCard:hover & {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.actionButton {
-  background: white;
-  color: $primary-black;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  @include flex-center;
   border: none;
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
   cursor: pointer;
-  transition: all $transition-normal;
-  box-shadow: $shadow-md;
-
+  transition: all 0.3s ease;
+  
   &:hover {
-    background: $secondary-pink;
-    color: white;
-    transform: scale(1.1);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.3);
-  }
-
-  i {
-    width: 1.25rem;
-    height: 1.25rem;
+    background: #e0005a;
+    transform: translateY(-2px);
   }
 }
 
@@ -132,91 +89,38 @@
 }
 
 .productName {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
   margin-bottom: 0.5rem;
   color: white;
-  line-height: 1.3;
-
-  &:hover {
-    color: $secondary-pink;
-  }
 }
 
-.productCategory {
+.productBrand {
   color: $gray-400;
   font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 
 .priceSection {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
-}
-
-.prices {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .currentPrice {
-  font-weight: 700;
   color: $secondary-pink;
+  font-weight: 400;
   font-size: 1.25rem;
 }
 
 .oldPrice {
   color: $gray-500;
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-decoration: line-through;
-}
-
-.addToCartButton {
-  background: $gray-800;
-  color: white;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  transition: all $transition-normal;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  white-space: nowrap;
-
-  &:hover {
-    background: $secondary-pink;
-    transform: translateY(-1px);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-.outOfStockButton {
-  background: $gray-700;
-  color: $gray-400;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  white-space: nowrap;
-  cursor: not-allowed;
-}
-
-.cartIcon {
-  width: 1rem;
-  height: 1rem;
 }

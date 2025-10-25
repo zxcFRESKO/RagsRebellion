@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Modal from '../../common/Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
-// import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
 import { useAuth } from '../../../context/AuthContext';
 import { classNames } from '../../../utils/helpers';
 import styles from './AuthModal.module.scss';
-import RegisterForm from '../RegisterForm/RegisterForm';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -23,7 +22,6 @@ const AuthModal: React.FC<AuthModalProps> = ({
   const { isAuthenticated } = useAuth();
   const [currentView, setCurrentView] = useState<AuthView>(initialView);
 
-  // Закрыть модальное окно если пользователь авторизовался
   React.useEffect(() => {
     if (isAuthenticated && isOpen) {
       onClose();
@@ -50,12 +48,10 @@ const AuthModal: React.FC<AuthModalProps> = ({
       closeOnOverlayClick={true}
     >
       <div className={styles.authModal}>
-        
-        {/* Header с логотипом */}
         <div className={styles.modalHeader}>
           <div className={classNames(styles.modalLogo, 'logo-font')}>
-            <span className={styles.logoWhite}>Rags</span>
-            <span className={styles.logoPink}>Rebellion</span>
+            <span className={styles.logoWhite}>RAGS</span>
+            <span className={styles.logoRed}>REBELLION</span>
           </div>
           <p className={styles.modalSubtitle}>
             {currentView === 'login' ? 'Sign in to your account' : 'Create your account'}
@@ -63,8 +59,6 @@ const AuthModal: React.FC<AuthModalProps> = ({
         </div>
 
         <div className={styles.modalContent}>
-          
-          {/* Табы для переключения между логином и регистрацией */}
           <div className={styles.tabNavigation}>
             <button
               className={classNames(
@@ -86,7 +80,6 @@ const AuthModal: React.FC<AuthModalProps> = ({
             </button>
           </div>
 
-          {/* Формы */}
           {currentView === 'login' ? (
             <LoginForm
               onSuccess={handleSuccess}
@@ -98,7 +91,6 @@ const AuthModal: React.FC<AuthModalProps> = ({
               onSwitchToRegister={switchToLogin}
             />
           )}
-
         </div>
       </div>
     </Modal>
